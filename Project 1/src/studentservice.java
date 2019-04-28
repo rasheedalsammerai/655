@@ -8,7 +8,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-@Path("/")
+@Path("/student/")
 public class studentservice {
     private static ConcurrentHashMap<String, Student> studentDB = new ConcurrentHashMap<String, Student>();
     private static AtomicInteger idCounter = new AtomicInteger();

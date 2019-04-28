@@ -1,7 +1,7 @@
 <component name="ArtifactManager">
-  <artifact type="war" name="student">
+  <artifact type="war" build-on-make="true" name="student">
     <output-path>$PROJECT_DIR$/out/artifacts/student</output-path>
-    <root id="archive" name="student.war">
+    <root id="archive" name="_.war">
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
           <element id="module-output" name="Project 1" />
