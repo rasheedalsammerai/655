@@ -24,7 +24,7 @@ public class studentservice {
     @Produces("application/xml")
     public Response getStudent(@PathParam("name") String name) throws UnsupportedEncodingException {
 
-        String decoded = decodeValue(name);
+        String decoded = helpers.DecodeValue(name);
 
         if(!studentDB.containsKey(decoded)){
             return Response.status(404).build();
@@ -50,10 +50,10 @@ public class studentservice {
     }
 
     private Response addUpdateStudent(String Name, String Grade) throws UnsupportedEncodingException{
-        String _grade = decodeValue(Grade);
-        String _name = decodeValue(Name);
+        String _grade = helpers.DecodeValue(Grade);
+        String _name = helpers.DecodeValue(Name);
 
-        if(!validGrade(_grade.toUpperCase())){
+        if(!helpers.isValidGrade(_grade.toUpperCase())){
             return Response.status(400).build();
         }
 
@@ -71,7 +71,7 @@ public class studentservice {
         //return getStudentResponse(_student);
         return Response.status(200).build();
     }
-
+    /*
     private boolean validGrade(String Grade){
         if(Grade.length() > 2) return false;
 
@@ -88,12 +88,13 @@ public class studentservice {
         }
         return false;
     }
+    */
 
     @DELETE
     @Path("{name}")
     public Response deleteStudent(@PathParam("name") String name) throws UnsupportedEncodingException {
 
-        String decoded = decodeValue(name);
+        String decoded = helpers.DecodeValue(name);
 
         if(!studentDB.containsKey(decoded)){
             return Response.status(404).build();
@@ -124,7 +125,7 @@ public class studentservice {
 
         return getXMLwrapper(_studentList).toString();
     }
-
+/*
     private String decodeValue(String Value) throws UnsupportedEncodingException{
         System.out.println("Value Received: (" + Value + ")");
         String decoded = URLDecoder.decode(Value, StandardCharsets.UTF_8.toString());
@@ -134,10 +135,12 @@ public class studentservice {
         return Value;
     }
 
+ */
     private StringBuilder getXMLwrapper(StringBuilder XML){
         XML.insert(0, "<?xml version=\"1.0\" encoding=\"UTF-8\"?><student-list>").append("</student-list>");
         return XML;
     }
+
 
     private Response getStudentListResponse(){
         return Response.status(200).entity(getStudentListXML()).build();

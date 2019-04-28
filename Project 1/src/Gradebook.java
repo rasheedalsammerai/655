@@ -15,6 +15,10 @@ public class Gradebook {
         this.setName(_name);
     }
 
+    public Gradebook(String _name) {
+        this.setName(_name);
+    }
+
     public String getName() {
         return _name;
     }
@@ -38,4 +42,17 @@ public class Gradebook {
     public void setStudents(ConcurrentHashMap<String, Student> Students) {
         this._students = Students;
     }
+
+    public String getXML(){
+        return "<Gradebook>\n" +
+                "\t\t<id>\n" +
+                this.getID() +
+                "\t\t</id>\n" +
+                "\t\t<name>\n" +
+                this.getName() +
+                "\t\t</name>\n" +
+                "\t</Gradebook>";
+    }
+
+
 }
