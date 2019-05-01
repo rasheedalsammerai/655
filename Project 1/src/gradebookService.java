@@ -12,7 +12,6 @@ import java.util.regex.Pattern;
 public class gradebookService {
 
     private static ConcurrentHashMap<String, Gradebook> gradeBookDB = new ConcurrentHashMap<String, Gradebook>();
-    private static AtomicInteger idCounter = new AtomicInteger();
 
     @GET
      @Produces("application/xml")
