@@ -60,7 +60,7 @@ public class gradebookService {
         Gradebook _gradeBook;
 
         if(!gradeBookDB.containsKey(_name)){
-            _gradeBook = new Gradebook(_name);
+            _gradeBook = new Gradebook("primary", _name);
             gradeBookDB.putIfAbsent(_name, _gradeBook);
         }else{
             return Response.status(400).build();

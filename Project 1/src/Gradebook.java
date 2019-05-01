@@ -2,7 +2,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class Gradebook {
 
-    private int _id;
+    private String _id;
     private String _name;
     private ConcurrentHashMap<String, Student> _students;
 
@@ -10,9 +10,9 @@ public class Gradebook {
         _students = new ConcurrentHashMap<String, Student>();
     }
 
-    public Gradebook(int _id, String _name) {
-        this.setID(_id);
+    public Gradebook(String Gradebook, String _name) {
         this.setName(_name);
+        this.setID(Gradebook);
     }
 
     public Gradebook(String _name) {
@@ -27,12 +27,12 @@ public class Gradebook {
         this._name = Name;
     }
 
-    public int getID() {
+    public String getID() {
         return _id;
     }
 
-    public void setID(int ID) {
-        this._id = ID;
+    public void setID(String Gradebook) {
+        this._id = Math.abs((this._name + Gradebook).hashCode()) + "";
     }
 
     public ConcurrentHashMap<String, Student> getStudents() {

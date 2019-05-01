@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
-      <artifact name="studentS" />
+      <artifact name="student" />
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
@@ -73,11 +73,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/gradebookService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="615">
-              <caret line="41" column="5" lean-forward="true" selection-start-line="41" selection-start-column="5" selection-end-line="41" selection-end-column="5" />
+            <state relative-caret-position="783">
+              <caret line="73" column="74" lean-forward="true" selection-start-line="73" selection-start-column="74" selection-end-line="73" selection-end-column="74" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#344#363#0" expanded="true" />
@@ -100,11 +100,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Gradebook.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="646">
-              <caret line="45" column="27" selection-start-line="45" selection-start-column="27" selection-end-line="45" selection-end-column="27" />
+            <state relative-caret-position="496">
+              <caret line="34" column="64" selection-start-line="34" selection-start-column="64" selection-end-line="34" selection-end-column="64" />
               <folding>
                 <element signature="e#203#204#0" expanded="true" />
                 <element signature="e#255#256#0" expanded="true" />
@@ -116,8 +116,8 @@
                 <element signature="e#517#518#0" expanded="true" />
                 <element signature="e#407#408#0" expanded="true" />
                 <element signature="e#433#434#0" expanded="true" />
-                <element signature="e#468#469#0" expanded="true" />
-                <element signature="e#498#499#0" expanded="true" />
+                <element signature="e#693#694#0" expanded="true" />
+                <element signature="e#757#758#0" expanded="true" />
                 <element signature="e#688#689#0" expanded="true" />
                 <element signature="e#720#721#0" expanded="true" />
                 <element signature="e#798#799#0" expanded="true" />
@@ -151,8 +151,8 @@
         <option value="$PROJECT_DIR$/src/application.java" />
         <option value="$PROJECT_DIR$/src/studentservice.java" />
         <option value="$PROJECT_DIR$/src/helpers.java" />
-        <option value="$PROJECT_DIR$/src/Gradebook.java" />
         <option value="$PROJECT_DIR$/src/gradebookService.java" />
+        <option value="$PROJECT_DIR$/src/Gradebook.java" />
       </list>
     </option>
   </component>
@@ -343,12 +343,12 @@
       <workItem from="1553353900927" duration="4781000" />
       <workItem from="1553360801141" duration="13850000" />
       <workItem from="1556469064705" duration="607000" />
-      <workItem from="1556472018161" duration="8053000" />
+      <workItem from="1556472018161" duration="9321000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="27291000" />
+    <option name="totallyTimeSpent" value="28559000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="961" y="23" width="1537" height="1417" extended-state="0" />
@@ -463,27 +463,15 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Gradebook.java">
+    <entry file="file://$PROJECT_DIR$/src/gradebookService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="646">
-          <caret line="45" column="27" selection-start-line="45" selection-start-column="27" selection-end-line="45" selection-end-column="27" />
+        <state relative-caret-position="783">
+          <caret line="73" column="74" lean-forward="true" selection-start-line="73" selection-start-column="74" selection-end-line="73" selection-end-column="74" />
           <folding>
-            <element signature="e#203#204#0" expanded="true" />
-            <element signature="e#255#256#0" expanded="true" />
-            <element signature="e#420#421#0" expanded="true" />
-            <element signature="e#455#456#0" expanded="true" />
-            <element signature="e#413#414#0" expanded="true" />
-            <element signature="e#441#442#0" expanded="true" />
-            <element signature="e#483#484#0" expanded="true" />
-            <element signature="e#517#518#0" expanded="true" />
-            <element signature="e#407#408#0" expanded="true" />
-            <element signature="e#433#434#0" expanded="true" />
-            <element signature="e#468#469#0" expanded="true" />
-            <element signature="e#498#499#0" expanded="true" />
-            <element signature="e#688#689#0" expanded="true" />
-            <element signature="e#720#721#0" expanded="true" />
-            <element signature="e#798#799#0" expanded="true" />
-            <element signature="e#840#841#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#344#363#0" expanded="true" />
+            <element signature="e#2263#2264#0" expanded="true" />
+            <element signature="e#2344#2345#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -500,15 +488,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/gradebookService.java">
+    <entry file="file://$PROJECT_DIR$/src/Gradebook.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="615">
-          <caret line="41" column="5" lean-forward="true" selection-start-line="41" selection-start-column="5" selection-end-line="41" selection-end-column="5" />
+        <state relative-caret-position="496">
+          <caret line="34" column="64" selection-start-line="34" selection-start-column="64" selection-end-line="34" selection-end-column="64" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#344#363#0" expanded="true" />
-            <element signature="e#2263#2264#0" expanded="true" />
-            <element signature="e#2344#2345#0" expanded="true" />
+            <element signature="e#203#204#0" expanded="true" />
+            <element signature="e#255#256#0" expanded="true" />
+            <element signature="e#420#421#0" expanded="true" />
+            <element signature="e#455#456#0" expanded="true" />
+            <element signature="e#413#414#0" expanded="true" />
+            <element signature="e#441#442#0" expanded="true" />
+            <element signature="e#483#484#0" expanded="true" />
+            <element signature="e#517#518#0" expanded="true" />
+            <element signature="e#407#408#0" expanded="true" />
+            <element signature="e#433#434#0" expanded="true" />
+            <element signature="e#693#694#0" expanded="true" />
+            <element signature="e#757#758#0" expanded="true" />
+            <element signature="e#688#689#0" expanded="true" />
+            <element signature="e#720#721#0" expanded="true" />
+            <element signature="e#798#799#0" expanded="true" />
+            <element signature="e#840#841#0" expanded="true" />
           </folding>
         </state>
       </provider>
