@@ -15,6 +15,7 @@ public class application extends Application{
         HashSet h = new HashSet<Class<?>>();
         h.add( studentservice.class );
         h.add( gradebookService.class );
+        h.add( secondaryService.class );
         return h;
     }
 

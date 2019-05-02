@@ -1,3 +1,5 @@
+import com.sun.org.apache.xpath.internal.operations.Bool;
+
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
@@ -25,6 +27,9 @@ public class secondaryService {
 
     private Response addUpdateGradeBook(String Name) throws UnsupportedEncodingException{
         // String _grade = helpers.DecodeValue(Grade);
+        System.out.println("Made it to Secondary Server \n\n\n\n");
+        return helpers.AddUpdateGradeBook(Name, secondaryDB, false);
+        /*
         String _name = helpers.DecodeValue(Name);
 
         Gradebook _gradeBook;
@@ -37,5 +42,11 @@ public class secondaryService {
         }
 
         return Response.status(200).build();
+
+         */
+    }
+
+    public static ConcurrentHashMap<String, Gradebook> GetDB(){
+        return secondaryDB;
     }
 }

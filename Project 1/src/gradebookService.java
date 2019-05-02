@@ -54,6 +54,9 @@ public class gradebookService {
 
     private Response addUpdateGradeBook(String Name) throws UnsupportedEncodingException{
        // String _grade = helpers.DecodeValue(Grade);
+        return helpers.AddUpdateGradeBook(Name, gradeBookDB, true);
+
+        /*
         String _name = helpers.DecodeValue(Name);
 
         Gradebook _gradeBook;
@@ -66,7 +69,10 @@ public class gradebookService {
         }
 
         //return getGradeBookResponse(_gradeBook);
-        return Response.status(200).build();
+        return Response.status(200).entity(_gradeBook.getID()).build();
+        //status(200).entity(getStudentXML(student)).build()
+
+         */
     }
 
     private Response getGradeBookListResponse(){
@@ -88,6 +94,8 @@ public class gradebookService {
         return helpers.getXMLwrapper(_gradeBookList, "gradebook-list").toString();
     }
 
-      /**/
+    public static ConcurrentHashMap<String, Gradebook> GetDB(){
+        return gradeBookDB;
+    }
 
 }

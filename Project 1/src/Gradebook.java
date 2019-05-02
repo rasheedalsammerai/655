@@ -32,7 +32,7 @@ public class Gradebook {
     }
 
     public void setID(String Gradebook) {
-        this._id = Math.abs((this._name + Gradebook).hashCode()) + "";
+        this._id = helpers.GetHashID(this._name, Gradebook);//Math.abs((this._name + Gradebook).hashCode()) + "";
     }
 
     public ConcurrentHashMap<String, Student> getStudents() {
