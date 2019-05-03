@@ -14,10 +14,19 @@ public class gradebookService {
     private static ConcurrentHashMap<String, Gradebook> gradeBookDB = new ConcurrentHashMap<String, Gradebook>();
 
     @GET
-     @Produces("application/xml")
+    @Produces("application/xml")
     //@Produces("application/text")
     public String getGradeBooks(){
        // return "Hello Gradebook!";
+        return getGradeBookListXML();
+    }
+
+    @GET
+    @Produces("application/xml")
+    @Path("{gradeBookID}")
+    //@Produces("application/text")
+    public String getGradeBooks(@PathParam("gradeBookID") String name){
+        // return "Hello Gradebook!";
         return getGradeBookListXML();
     }
 
@@ -40,6 +49,71 @@ public class gradebookService {
         return getGradeBookResponse(gradeBookDB.get(name));
     }
 */
+
+    @GET
+    @Produces("application/xml")
+    @Path("{gradeBookID}/student")
+    public String postStudent(@PathParam("gradeBookID") String GradeBookID) throws UnsupportedEncodingException{
+        Gradebook _this = getGradebookByID(GradeBookID);
+
+        if(_this == null){
+            return helpers.getXMLwrapper(new StringBuilder("INVALID GradeBook"), "gradebook").toString();
+        }
+
+
+        return helpers.getXMLwrapper(new StringBuilder(_this.getStudentsXML()), "gradebook").toString();
+
+       // return addUpdateStudent(GradeBookID);
+    }
+
+    @POST
+    @Path("{gradeBookID}/student/{studentName}")
+    public Response postStudent(@PathParam("gradeBookID") String GradeBookID, @PathParam("studentName") String StudentName) throws UnsupportedEncodingException{
+        return addUpdateStudent(GradeBookID, StudentName, null);
+    }
+
+    @PUT
+    @Path("{gradeBookID}/student/{studentName}")
+    public Response putStudent(@PathParam("gradeBookID") String GradeBookID, @PathParam("studentName") String StudentName) throws UnsupportedEncodingException{
+        return addUpdateStudent(GradeBookID, StudentName, null);
+    }
+
+    @POST
+    @Path("{gradeBookID}/student/{studentName}/grade/{grade}")
+    public Response postStudentGrade(@PathParam("gradeBookID") String GradeBookID, @PathParam("studentName") String StudentName, @PathParam("grade") String Grade) throws UnsupportedEncodingException{
+        return addUpdateStudent(GradeBookID, StudentName, Grade);
+    }
+
+    @PUT
+    @Path("{gradeBookID}/student/{studentName}/grade/{grade}")
+    public Response putStudentGrade(@PathParam("gradeBookID") String GradeBookID, @PathParam("studentName") String StudentName, @PathParam("grade") String Grade) throws UnsupportedEncodingException{
+            return addUpdateStudent(GradeBookID, StudentName, Grade);
+    }
+
+    private Response addUpdateStudent(String GradebookID, String Name,String Grade) throws UnsupportedEncodingException {
+        Gradebook _this = getGradebookByID(GradebookID);
+
+        if(_this == null){
+            return Response.status(400).entity("INVALID GradeBook").build();
+        }
+        /*
+        if(!gradeBookDB.containsKey(GradebookID)) {
+        }else{
+            _this = gradeBookDB.get(GradebookID);
+        }
+        */
+
+        return helpers.AddUpdateStudentInGradeBook(Name, Grade, _this);
+    }
+
+    private Gradebook getGradebookByID(String GradebookID){
+
+        if(!gradeBookDB.containsKey(GradebookID)) {
+            return null;
+        }else{
+            return gradeBookDB.get(GradebookID);
+        }
+    }
     @POST
     @Path("{name}")
     public Response getGradeBookGrade(@PathParam("name") String name) throws UnsupportedEncodingException{

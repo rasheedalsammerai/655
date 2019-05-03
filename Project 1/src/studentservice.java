@@ -50,6 +50,9 @@ public class studentservice {
     }
 
     private Response addUpdateStudent(String Name, String Grade) throws UnsupportedEncodingException{
+
+        return helpers.AddUpdateStudentInGradeBook(Name,Grade, new Gradebook("0","0"));
+        /*
         String _grade = helpers.DecodeValue(Grade);
         String _name = helpers.DecodeValue(Name);
 
@@ -70,6 +73,8 @@ public class studentservice {
 
         //return getStudentResponse(_student);
         return Response.status(200).build();
+
+         */
     }
     /*
     private boolean validGrade(String Grade){
@@ -148,5 +153,9 @@ public class studentservice {
 
     private Response getStudentResponse(Student student){
         return Response.status(200).entity(getStudentXML(student)).build();
+    }
+
+    public static ConcurrentHashMap<String, Student> GetDB(){
+        return studentDB;
     }
 }

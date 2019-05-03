@@ -1,9 +1,11 @@
 public class Student {
-    private int id;
+    private String id;
+    private String gradeBookID;
     private String name;
     private String grade;
 
     public Student(String Name) {
+        this.setId(helpers.GetHashID(Name, "0"));
         this.setName(Name);
     }
 
@@ -12,11 +14,19 @@ public class Student {
         this.setGrade(Grade);
     }
 
-    public int getId() {
+    public Student(String Name, String Grade, String GradeBookID) {
+
+        this.setName(Name);
+        this.setGrade(Grade);
+        this.setGradeBookID(GradeBookID);
+        this.setId(helpers.GetHashID(Name, GradeBookID));
+    }
+
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    private void setId(String id) {
         this.id = id;
     }
 
@@ -30,6 +40,14 @@ public class Student {
 
     public String getGrade() {
         return grade;
+    }
+
+    public String getGradeBookID() {
+        return gradeBookID;
+    }
+
+    public void setGradeBookID(String gradeBookID) {
+        this.gradeBookID = gradeBookID;
     }
 
     public void setGrade(String grade) {

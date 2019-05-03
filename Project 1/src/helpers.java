@@ -62,6 +62,38 @@ public class helpers {
         return Response.status(200).entity(_gradeBook.getID()).build();
         //status(200).entity(getStudentXML(student)).build()
     }
+
+    public static Response AddUpdateStudentInGradeBook(String Name, String Grade, Gradebook GradeBook) throws UnsupportedEncodingException{
+        ConcurrentHashMap<String, Student> _students = studentservice.GetDB();
+
+        String _grade = helpers.DecodeValue(Grade);
+        String _name = helpers.DecodeValue(Name);
+        String _gbID = GradeBook.getID(); //helpers.GetHashID(_name, GradeBook); //
+
+        String _studentID = helpers.GetHashID(_name, GradeBook.getID());
+
+        if(Grade != null && !helpers.isValidGrade(_grade.toUpperCase())){
+            return Response.status(400).entity("ERROR: Grade is Invalid").build();
+        }
+
+        Student _student;
+        String _rtnString;
+
+        if(_students.containsKey(_studentID)){
+            _student = _students.get(_studentID);
+            _student.setGrade(_grade);
+            _rtnString = "Updated Student: " + _name + " grade to: " + _grade;
+
+        }else{
+            _student = new Student(_name, _grade, _gbID);
+            _students.putIfAbsent(_studentID, _student);
+            _rtnString = "Added Student: " + _name + " to Gradebook: " + GradeBook.getName();
+        }
+
+        //return getStudentResponse(_student);
+        return Response.status(200).entity(_rtnString).build();
+    }
+
     public static String GetHashID(String GradebookName, String GradebookServer){
         return Math.abs((GradebookName + GradebookServer).hashCode()) + "";
     }

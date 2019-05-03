@@ -1,3 +1,5 @@
+import javax.ws.rs.core.Response;
+import java.io.UnsupportedEncodingException;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class Gradebook {
@@ -10,9 +12,14 @@ public class Gradebook {
         _students = new ConcurrentHashMap<String, Student>();
     }
 
-    public Gradebook(String Gradebook, String _name) {
+    /**
+     * Constructor for Gradebook
+     * @param GradebookServer: Name of the server the GB is located
+     * @param _name: Name of the Gradebook
+     */
+    public Gradebook(String GradebookServer, String _name) {
         this.setName(_name);
-        this.setID(Gradebook);
+        this.setID(GradebookServer);
     }
 
     public Gradebook(String _name) {
@@ -31,8 +38,8 @@ public class Gradebook {
         return _id;
     }
 
-    public void setID(String Gradebook) {
-        this._id = helpers.GetHashID(this._name, Gradebook);//Math.abs((this._name + Gradebook).hashCode()) + "";
+    public void setID(String GradebookServer) {
+        this._id = helpers.GetHashID(this._name, GradebookServer);//Math.abs((this._name + Gradebook).hashCode()) + "";
     }
 
     public ConcurrentHashMap<String, Student> getStudents() {
@@ -54,5 +61,27 @@ public class Gradebook {
                 "\t</Gradebook>";
     }
 
+    public String getStudentsXML(){
+
+        StringBuilder _rtn = new StringBuilder();
+
+        _rtn.append("\t\t<id>\n" +
+                this.getID() +
+                "\t\t</id>\n" +
+                "\t\t<name>\n" +
+                this.getName() +
+                "\t\t</name>\n" +
+                "\t\t<students>\n");
+
+        ConcurrentHashMap<String, Student> _sDB = studentservice.GetDB();
+        for(String _key : _sDB.keySet()){
+            Student _stu = _sDB.get(_key);
+            if(_stu.getGradeBookID().equals(this._id)){
+                _rtn.append(_stu.getXML());
+            }
+        }
+
+        return _rtn.append("\t</students>").toString();
+    }
 
 }
