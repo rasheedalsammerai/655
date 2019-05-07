@@ -95,6 +95,6 @@ public class helpers {
     }
 
     public static String GetHashID(String GradebookName, String GradebookServer){
-        return Math.abs((GradebookName + GradebookServer).hashCode()) + "";
+        return Math.abs((GradebookName.toUpperCase() + GradebookServer.toUpperCase()).hashCode()) + "";
     }
 }

@@ -1,9 +1,6 @@
 import com.sun.org.apache.xpath.internal.operations.Bool;
 
-import javax.ws.rs.POST;
-import javax.ws.rs.PUT;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
+import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 import java.io.UnsupportedEncodingException;
 import java.util.concurrent.ConcurrentHashMap;
@@ -12,6 +9,7 @@ import java.util.concurrent.ConcurrentHashMap;
 public class secondaryService {
 
     private static ConcurrentHashMap<String, Gradebook> secondaryDB = new ConcurrentHashMap<String, Gradebook>();
+    private String _invalidGB = "Invalid Gradebook ID";
 
     @POST
     @Path("{name}")
@@ -46,7 +44,31 @@ public class secondaryService {
          */
     }
 
+    @DELETE
+    @Path("{gradeBookID}")
+    public Response deleteGradeBook(@PathParam("gradeBookID") String GradebookID) throws UnsupportedEncodingException {
+        Gradebook _this = getGradebookByID(GradebookID);
+
+        if(_this == null){
+            return Response.status(400).entity(_invalidGB).build();
+        }
+
+        secondaryDB.remove(GradebookID);
+
+        return Response.status(400).entity(_this.getName() + " was successfully deleted from the Secondary Server").build();
+    }
+
+
     public static ConcurrentHashMap<String, Gradebook> GetDB(){
         return secondaryDB;
+    }
+
+    public Gradebook getGradebookByID(String GradebookID){
+
+        if(!secondaryDB.containsKey(GradebookID)) {
+            return null;
+        }else{
+            return secondaryDB.get(GradebookID);
+        }
     }
 }

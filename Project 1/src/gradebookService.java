@@ -12,6 +12,7 @@ import java.util.regex.Pattern;
 public class gradebookService {
 
     private static ConcurrentHashMap<String, Gradebook> gradeBookDB = new ConcurrentHashMap<String, Gradebook>();
+    private String _invalidGB = "Invalid Gradebook ID";
 
     @GET
     @Produces("application/xml")
@@ -57,9 +58,8 @@ public class gradebookService {
         Gradebook _this = getGradebookByID(GradeBookID);
 
         if(_this == null){
-            return helpers.getXMLwrapper(new StringBuilder("INVALID GradeBook"), "gradebook").toString();
+            return helpers.getXMLwrapper(new StringBuilder(_invalidGB), "gradebook").toString();
         }
-
 
         return helpers.getXMLwrapper(new StringBuilder(_this.getStudentsXML()), "gradebook").toString();
 
@@ -94,7 +94,7 @@ public class gradebookService {
         Gradebook _this = getGradebookByID(GradebookID);
 
         if(_this == null){
-            return Response.status(400).entity("INVALID GradeBook").build();
+            return Response.status(400).entity(_invalidGB).build();
         }
         /*
         if(!gradeBookDB.containsKey(GradebookID)) {
@@ -106,14 +106,20 @@ public class gradebookService {
         return helpers.AddUpdateStudentInGradeBook(Name, Grade, _this);
     }
 
-    private Gradebook getGradebookByID(String GradebookID){
+    @DELETE
+    @Path("{gradeBookID}")
+    public Response deleteGradeBook(@PathParam("gradeBookID") String GradebookID) throws UnsupportedEncodingException {
+        Gradebook _this = getGradebookByID(GradebookID);
 
-        if(!gradeBookDB.containsKey(GradebookID)) {
-            return null;
-        }else{
-            return gradeBookDB.get(GradebookID);
+        if(_this == null){
+            return Response.status(400).entity(_invalidGB).build();
         }
+
+        gradeBookDB.remove(GradebookID);
+
+        return Response.status(400).entity(_this.getName() + " was successfully deleted from the Primary Server").build();
     }
+
     @POST
     @Path("{name}")
     public Response getGradeBookGrade(@PathParam("name") String name) throws UnsupportedEncodingException{
@@ -172,4 +178,12 @@ public class gradebookService {
         return gradeBookDB;
     }
 
+    public Gradebook getGradebookByID(String GradebookID){
+
+        if(!gradeBookDB.containsKey(GradebookID)) {
+            return null;
+        }else{
+            return gradeBookDB.get(GradebookID);
+        }
+    }
 }
