@@ -23,6 +23,18 @@ public class secondaryService {
         return addUpdateGradeBook(name);
     }
 
+    @POST
+    @Path("{gradebookID}")
+    public Response postGradeBookGradebyID(@PathParam("gradebookID") String gradebookID) throws UnsupportedEncodingException {
+        return cloneGradeBook(gradebookID);
+    }
+
+    @PUT
+    @Path("{gradebookID}")
+    public Response putGradeBookGradebyID(@PathParam("gradebookID") String gradebookID) throws UnsupportedEncodingException{
+        return cloneGradeBook(gradebookID);
+    }
+
     private Response addUpdateGradeBook(String Name) throws UnsupportedEncodingException{
         // String _grade = helpers.DecodeValue(Grade);
         System.out.println("Made it to Secondary Server \n\n\n\n");
@@ -42,6 +54,10 @@ public class secondaryService {
         return Response.status(200).build();
 
          */
+    }
+
+    private Response cloneGradeBook(String GradebookID) throws UnsupportedEncodingException{
+
     }
 
     @DELETE
